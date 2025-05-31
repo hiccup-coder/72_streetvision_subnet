@@ -1,3 +1,4 @@
-hf_repo: 'natix-network-org/roadwork'  # Hugging Face repository for downloading model files
+# hf_repo: 'natix-network-org/roadwork'  # Hugging Face repository for downloading model files
+hf_repo: 'rossijakob/street_roadvision'  # Hugging Face repository for downloading model files
 config_name: 'config.yaml'  # pre-trained configuration file in HuggingFace
 weights: 'model.safetensors'  # Model checkpoint in HuggingFace

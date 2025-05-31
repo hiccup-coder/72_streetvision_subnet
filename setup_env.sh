@@ -69,8 +69,8 @@ SUBTENSOR_CHAIN_ENDPOINT=wss://test.finney.opentensor.ai:443
                                      # - wss://test.finney.opentensor.ai:443/
                                      
 # Wallet Configuration
-WALLET_NAME=
-WALLET_HOTKEY=
+WALLET_NAME=hiccup
+WALLET_HOTKEY=hiccup721
 
 # Miner Settings
 MINER_AXON_PORT=8091
@@ -95,8 +95,8 @@ NETUID=72
 SUBTENSOR_NETWORK=finney
 SUBTENSOR_CHAIN_ENDPOINT=wss://entrypoint-finney.opentensor.ai:443
 
-WALLET_NAME=default
-WALLET_HOTKEY=default
+WALLET_NAME=hiccup
+WALLET_HOTKEY=hiccup721
 
 VALIDATOR_AXON_PORT=8092
 VALIDATOR_PROXY_PORT=10913

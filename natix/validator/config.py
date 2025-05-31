@@ -25,8 +25,10 @@ WANDB_ENTITY = "natix_network_org"
 
 
 # Cache directories
-HUGGINGFACE_CACHE_DIR: Path = Path.home() / ".cache" / "huggingface"
-NATIX_CACHE_DIR: Path = Path.home() / ".cache" / "natix"
+# HUGGINGFACE_CACHE_DIR: Path = Path.home() / ".cache" / "huggingface"
+# NATIX_CACHE_DIR: Path = Path.home() / ".cache" / "natix"
+HUGGINGFACE_CACHE_DIR: Path = Path("/nvme0n1-disk/hiccup/streetvision-subnet/.cache/huggingface")
+NATIX_CACHE_DIR: Path = Path("/nvme0n1-disk/hiccup/streetvision-subnet/.cache/natix")
 NATIX_CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 VALIDATOR_INFO_PATH: Path = NATIX_CACHE_DIR / "validator.yaml"

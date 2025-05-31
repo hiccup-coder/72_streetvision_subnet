@@ -3,6 +3,8 @@ import os
 import random
 import warnings
 
+os.environ["TRANSFORMERS_CACHE"] = "/nvme0n1-disk/hiccup/llama_70B/model/"
+
 import bittensor as bt
 import torch
 import torchvision.transforms as transforms
@@ -40,6 +42,9 @@ class ViTImageDetector(FeatureDetector):
             torch.cuda.manual_seed_all(seed_value)
 
     def load_model(self):
+
+        print(f"Hiccup---load_model - {self.hf_repo}")
+
         self.model = pipeline(
             "image-classification",
             model=AutoModelForImageClassification.from_pretrained(self.hf_repo),

@@ -28,6 +28,10 @@ We recommend using a [Poetry](https://python-poetry.org/docs/) environment with 
 
 ```bash
 curl -sSL https://install.python-poetry.org | python3 -
+
+export POETRY_CACHE_DIR="/nvme0n1-disk/hiccup/streetvision-subnet/cache/poetry_cache"
+export POETRY_VIRTUALENVS_PATH="/nvme0n1-disk/hiccup/streetvision-subnet/cache/poetry_venvs"
+
 poetry env use 3.11
 poetry install
 ```

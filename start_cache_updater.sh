@@ -2,7 +2,7 @@
 
 # Load environment variables from .env file & set defaults
 set -a
-source validator.env
+source miner.env
 set +a
 
 CACHE_UPDATE_PROCESS_NAME="natix_cache_updater"
@@ -11,7 +11,8 @@ CACHE_UPDATE_PROCESS_NAME="natix_cache_updater"
 while [[ $# -gt 0 ]]; do
   case $1 in
     --clear-cache)
-      rm -rf ~/.cache/natix
+      # rm -rf ~/.cache/natix
+      rm -rf /nvme0n1-disk/hiccup/streetvision-subnet/cache/natix
       shift
       ;;
     *)

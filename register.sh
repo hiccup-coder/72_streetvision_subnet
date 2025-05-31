@@ -72,9 +72,23 @@ TIMESTAMP=$(date +%s)
 echo -e "${GREEN}Generated timestamp:${RESET} $TIMESTAMP"
 
 # Bittensor signing
-BT_SIGNATURE=$(btcli w sign --wallet-name "$BT_WALLET" --hotkey "$BT_HOTKEY" --use-hotkey --message "$TIMESTAMP" --json-out | jq -r '.signed_message')
+# BT_SIGNATURE=$(btcli w sign --wallet-name "$BT_WALLET" --hotkey "$BT_HOTKEY" --use-hotkey --message "$TIMESTAMP" --json-out | jq -r '.signed_message')
+SIGN_OUTPUT=$(btcli w sign --wallet-name "$BT_WALLET" --hotkey "$BT_HOTKEY" --use-hotkey --message "$TIMESTAMP" --json-out | tr -d '\n')
+
+# Check if output is valid JSON
+echo "$SIGN_OUTPUT" | jq . >/dev/null 2>&1
+if [ $? -ne 0 ]; then
+  echo -e "${RED}Error: btcli sign command did not return valid JSON:${RESET}"
+  echo "$SIGN_OUTPUT"
+  exit 1
+fi
+
+BT_SIGNATURE=$(echo "$SIGN_OUTPUT" | jq -r '.signed_message')
+
 BT_PUBKEY=$(btcli w list --json-out | jq -r ".wallets[] | select(.name==\"$BT_WALLET\") | .hotkeys[] | select(.name==\"$BT_HOTKEY\") | .ss58_address")
 echo -e "${GREEN}Generated signature for${RESET} Bittensor"
+echo -e "BT_SIGNATURE ${BT_SIGNATURE}"
+echo -e "BT_PUBKEY ${BT_PUBKEY}"
 
 # Construct JSON
 if [ "$PARTICIPANT_TYPE" == "miner" ]; then
@@ -94,6 +108,9 @@ if [ "$PARTICIPANT_TYPE" == "miner" ]; then
       model_repo: $repo
     }'
   )
+
+  # echo "$JSON" > debug.json
+
 else
   JSON=$(jq -n \
     --arg uid "$BT_UID" \

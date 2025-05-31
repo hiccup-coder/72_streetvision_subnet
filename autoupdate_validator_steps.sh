@@ -6,5 +6,6 @@
 
 echo $CONDA_PREFIX
 ./setup_env.sh
-rm -rf ~/.cache/natix
+# rm -rf ~/.cache/natix
+rm -rf /nvme0n1-disk/hiccup/streetvision-subnet/cache/natix
 echo "Autoupdate steps complete :)"
